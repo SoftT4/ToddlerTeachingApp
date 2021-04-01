@@ -11,11 +11,14 @@
     tools:context=".SignUp">
 
     <ImageView
+        android:id="@+id/logo_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/playroom" />
+        android:src="@drawable/playroom"
+        android:transitionName="logo_image"/>
 
     <TextView
+        android:id="@+id/logo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -27,23 +30,28 @@
         android:shadowRadius="1"
         android:text="WELCOME"
         android:textColor="#FB621F"
-        android:textSize="45sp" />
+        android:textSize="45sp"
+        android:transitionName="logo_text"/>
 
     <TextView
+        android:id="@+id/sign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="3dp"
         android:text="Sign Up to start your game"
         android:textSize="18sp"
-        android:textColor="#17202A"/>
+        android:textColor="#17202A"
+        android:transitionName="logo_desc"/>
 
     <LinearLayout
+        android:id="@+id/signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:transitionName="signup_tran">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name"
@@ -78,6 +86,24 @@
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            app:passwordToggleEnabled="true"
+            app:boxStrokeColor="#17202A"
+            app:boxStrokeWidthFocused="3dp"
+            app:hintTextColor="#17202A">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email"
@@ -127,54 +153,54 @@
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/gender"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <RadioGroup
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gender"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textShortMessage" />
+                android:fontFamily="sans-serif"
+                android:text=" Gender: "
+                android:textSize="17dp" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            app:passwordToggleEnabled="true"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+            <RadioButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="6dp"
+                android:text="Girl"
+                android:textColor="#EC7063"
+                android:textSize="18dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="Boy"
+                android:textColor="#0D6DA3"
+                android:textSize="18dp"/>
+
+        </RadioGroup>
 
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/playButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:background="#00000000"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/signup_button"
+        android:transitionName="play_tran"/>
 
     <Button
+        android:id="@+id/back_to_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#00000000"
@@ -185,6 +211,7 @@
         android:shadowRadius="1"
         android:text="Already have an account? Log In"
         android:textColor="#FB621F"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:transitionName="call_login_tran"/>
 
 </LinearLayout>
