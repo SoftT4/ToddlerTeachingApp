@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9F9"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/playroom"
+        android:transitionName="logo_image" />
+
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/beachday"
+        android:shadowColor="#873600"
+        android:shadowDx="5"
+        android:shadowDy="10"
+        android:shadowRadius="1"
+        android:text="HOWDY !\nWELCOME BACK"
+        android:textColor="#FB621F"
+        android:textSize="56sp"
+        android:transitionName="logo_text"/>
+
+    <TextView
+        android:id="@+id/sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In to continue"
+        android:textSize="20sp"
+        android:textColor="#17202A"
+        android:transitionName="logo_desc"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:boxStrokeColor="#17202A"
+            app:boxStrokeWidthFocused="3dp"
+            android:hint="Username"
+            app:hintTextColor="#17202A"
+            android:transitionName="username_tran"
+            app:startIconDrawable="@drawable/ic_baseline_android_24"
+            app:startIconTint="#17202A">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:boxStrokeColor="#17202A"
+            app:boxStrokeWidthFocused="3dp"
+            android:hint="Password"
+            app:hintTextColor="#17202A"
+            android:transitionName="password_tran"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:startIconTint="#17202A">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#00000000"
+        android:elevation="0dp"
+        android:text="Forget Password?"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        android:textStyle="italic" />
+
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="35dp"
+        android:background="#00000000"
+        android:scaleType="centerInside"
+        android:transitionName="button_tran"
+        app:srcCompat="@drawable/button" />
+
+    <Button
+        android:id="@+id/signup_screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        android:elevation="0dp"
+        android:fontFamily="@font/beachday"
+        android:shadowColor="#873600"
+        android:shadowDx="2"
+        android:shadowDy="4"
+        android:shadowRadius="1"
+        android:text="New User? SIGN UP"
+        android:textColor="#FB621F"
+        android:textSize="25sp"
+        android:transitionName="login_signup_tran"/>
+
+</LinearLayout>
