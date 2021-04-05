@@ -40,9 +40,28 @@ public class Login extends AppCompatActivity
         password = findViewById(R.id.password);
         login_btn = findViewById(R.id.playButton);
 
+        callSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, SignUp.class);
+                Pair[] pairs = new Pair[7];
+                pairs[0] = new Pair<View, String>(image, "logo_image");
+                pairs[1] = new Pair<View, String>(logoText, "logo_text");
+                pairs[2] = new Pair<View, String>(sign, "logo_desc");
+                pairs[3] = new Pair<View, String>(username, "username_tran");
+                pairs[4] = new Pair<View, String>(password, "password_tran");
+                pairs[5] = new Pair<View, String>(login_btn, "button_tran");
+                pairs[6] = new Pair<View, String>(callSignUp, "login_signup_tran");
 
-        callSignUp.setOnClickListener(view -> {
-            Intent intent = new Intent(Login.this,SignUp.class);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Login.this, pairs);
+                    Login.this.startActivity(intent, options.toBundle());
+                }
+            }
+        });
+
+        login_btn.setOnClickListener(view -> {
+            Intent intent = new Intent(Login.this,Profile.class);
             Pair[] pairs = new Pair[7];
             pairs[0] = new Pair<View,String>(image,"logo_image");
             pairs[1] = new Pair<View,String>(logoText,"logo_text");

@@ -24,12 +24,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/beachday"
-        android:shadowColor="#873600"
+        android:shadowColor="#2a2d30"
         android:shadowDx="3"
         android:shadowDy="7"
         android:shadowRadius="1"
         android:text="WELCOME"
-        android:textColor="#FB621F"
+        android:textColor="#f0624b"
         android:textSize="45sp"
         android:transitionName="logo_text"/>
 
@@ -196,7 +196,7 @@
         android:layout_marginBottom="10dp"
         android:background="#00000000"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/signup_button"
+        app:srcCompat="@drawable/ic_signup"
         android:transitionName="play_tran"/>
 
     <Button
@@ -205,12 +205,12 @@
         android:layout_height="wrap_content"
         android:background="#00000000"
         android:fontFamily="@font/beachday"
-        android:shadowColor="#873600"
+        android:shadowColor="#2a2d30"
         android:shadowDx="1"
         android:shadowDy="2"
         android:shadowRadius="1"
         android:text="Already have an account? Log In"
-        android:textColor="#FB621F"
+        android:textColor="#6eadc1"
         android:textSize="20sp"
         android:transitionName="call_login_tran"/>
 

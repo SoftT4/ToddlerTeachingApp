@@ -22,14 +22,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
         android:fontFamily="@font/beachday"
-        android:shadowColor="#873600"
+        android:shadowColor="#2a2d30"
         android:shadowDx="5"
         android:shadowDy="10"
         android:shadowRadius="1"
-        android:text="HOWDY !\nWELCOME..."
-        android:textColor="#FB621F"
+        android:text="HOWDY !"
+        android:textColor="#6eadc1"
+        android:textSize="56sp"
+        android:transitionName="logo_text" />
+
+    <TextView
+        android:id="@+id/logo_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/beachday"
+        android:shadowColor="#2a2d30"
+        android:shadowDx="5"
+        android:shadowDy="10"
+        android:shadowRadius="1"
+        android:text="WELCOME..."
+        android:textColor="#f0624b"
         android:textSize="56sp"
         android:transitionName="logo_text" />
 
@@ -107,14 +122,14 @@
     <ImageButton
         android:id="@+id/playButton"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="35dp"
         android:background="#00000000"
         android:scaleType="centerInside"
         android:transitionName="button_tran"
-        app:srcCompat="@drawable/login_button" />
+        app:srcCompat="@drawable/ic_login" />
 
     <Button
         android:id="@+id/signup_screen"
@@ -126,13 +141,13 @@
         android:background="@null"
         android:elevation="0dp"
         android:fontFamily="@font/beachday"
-        android:shadowColor="#873600"
+        android:shadowColor="#2a2d30"
         android:shadowDx="2"
         android:shadowDy="4"
         android:shadowRadius="1"
         android:text="New User? SIGN UP"
-        android:textColor="#FB621F"
-        android:textSize="25sp"
+        android:textColor="#80c29e"
+        android:textSize="29sp"
         android:transitionName="login_signup_tran" />
 
 </LinearLayout>
