@@ -20,12 +20,10 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
-
-    private static int SPLASH_SCREEN = 5000;
+    private static int SPLASH_SCREEN = 4000;
 
     Animation topAnim, bottomAnim;
     ImageView play, room;
-    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,32 +31,52 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+        new BackgroundSplashTask().execute();
+    }
 
-        play = findViewById(R.id.play);
-        room = findViewById(R.id.room);
-
-        play.setAnimation(topAnim);
-        room.setAnimation(bottomAnim);
-
-        new Handler().postDelayed(new Runnable()
+    private class BackgroundSplashTask extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected void onPreExecute()
         {
-            @Override
-            public void run()
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0)
+        {
+            play = findViewById(R.id.play);
+            room = findViewById(R.id.room);
+
+            play.setAnimation(topAnim);
+            room.setAnimation(bottomAnim);
+            try
             {
-
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                Pair[] pairs = new Pair[2];
-                pairs[0] = new Pair<View, String>(play, "logo_image");
-                pairs[1] = new Pair<View, String>(room, "logo_text");
-
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
-                    MainActivity.this.startActivity(intent, options.toBundle());
-                }
+                Thread.sleep(SPLASH_SCREEN);
             }
-        }, SPLASH_SCREEN);
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            super.onPostExecute(result);
+            Intent intent = new Intent(MainActivity.this, Login.class);
+            Pair[] pairs = new Pair[2];
+            pairs[0] = new Pair<View, String>(play, "logo_image");
+            pairs[1] = new Pair<View, String>(room, "logo_text");
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                MainActivity.this.startActivity(intent, options.toBundle());
+            }
+            finish();
+        }
     }
 }

@@ -168,27 +168,29 @@
                 android:textSize="17dp" />
 
             <RadioButton
+                android:id="@+id/girl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:text="Girl"
                 android:textColor="#EC7063"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
             <RadioButton
+                android:id="@+id/boy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:text="Boy"
                 android:textColor="#0D6DA3"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
         </RadioGroup>
 
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/playButton"
+        android:id="@+id/signupButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
@@ -197,7 +199,7 @@
         android:background="#00000000"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/ic_signup"
-        android:transitionName="play_tran"/>
+        android:transitionName="signup_tran"/>
 
     <Button
         android:id="@+id/back_to_login"
