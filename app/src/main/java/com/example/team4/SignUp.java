@@ -1,10 +1,13 @@
 package com.example.team4;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,8 +17,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,6 +40,11 @@ public class SignUp extends AppCompatActivity
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    private FirebaseAuth mAuth;
+    private static final String TAG = "SignUp";
+    private User userclass;
+    String username;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,17 +68,19 @@ public class SignUp extends AppCompatActivity
         sign = findViewById(R.id.sign);
         signup = findViewById(R.id.signup);
         signup_btn = findViewById(R.id.signupButton);
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("users");
+        mAuth = FirebaseAuth.getInstance();
 
         signup_btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("users");
-
+                //Intent intent = new Intent(SignUp.this,Login.class);
+                //startActivity(intent);
                 String name = Name.getEditText().getText().toString();
-                String username = Username.getEditText().getText().toString();
+                username = Username.getEditText().getText().toString();
                 String email = Email.getEditText().getText().toString();
                 String phone = Phone.getEditText().getText().toString();
                 String password = Password.getEditText().getText().toString();
@@ -72,27 +88,72 @@ public class SignUp extends AppCompatActivity
                 String boy = Boy.getText().toString();
                 int age = Integer.parseInt(Age.getEditText().getEditableText().toString());
 
-                User userclass = new User(name,username,email,phone,password,boy,girl,age);
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter email and password", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-                reference.child(username).setValue(userclass);
+                userclass = new User(name,username,email,phone,password,boy,girl,age);
+                RegisterUser(email,password);
+
+               // reference.child(username).setValue(userclass);
             }
         });
 
 
         callLogIn.setOnClickListener(view -> {
             Intent intent = new Intent(SignUp.this,Login.class);
-            Pair[] pairs = new Pair[5];
-            pairs[0] = new Pair<View,String>(image,"logo_image");
-            pairs[1] = new Pair<View,String>(logoText,"logo_text");
-            pairs[2] = new Pair<View,String>(sign,"logo_desc");
-            pairs[3] = new Pair<View,String>(signup,"signup_tran");
-            pairs[4] = new Pair<View,String>(signup_btn,"play_tran");
+            startActivity(intent);
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP)
-            {
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp.this,pairs);
-                startActivity(intent, options.toBundle());
-            }
         });
+    }
+    public void RegisterUser(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "createUserWithEmail:success.Please verify your email to login");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        updateUI(user);
+                                    }
+                                    else{
+                                        Toast.makeText(SignUp.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(SignUp.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                           // updateUI(null);
+                        }
+                    }
+                });
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            currentUser.reload();
+        }
+    }
+    public void updateUI (FirebaseUser currentUser){
+        //String keyID = reference.push().getKey();
+        reference.child(username).setValue(userclass);
+        Intent intent = new Intent(SignUp.this,Login.class);
+        startActivity(intent);
+
     }
 }
