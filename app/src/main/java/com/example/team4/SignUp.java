@@ -43,7 +43,7 @@ public class SignUp extends AppCompatActivity
     private FirebaseAuth mAuth;
     private static final String TAG = "SignUp";
     private User userclass;
-    String username;
+    String username, email;
 
 
     @Override
@@ -151,7 +151,7 @@ public class SignUp extends AppCompatActivity
     }
     public void updateUI (FirebaseUser currentUser){
         //String keyID = reference.push().getKey();
-        reference.child(username).setValue(userclass);
+        reference.child(email).setValue(userclass);
         Intent intent = new Intent(SignUp.this,Login.class);
         startActivity(intent);
 
