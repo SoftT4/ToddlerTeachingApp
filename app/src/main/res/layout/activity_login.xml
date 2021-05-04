@@ -64,51 +64,40 @@
         android:layout_marginBottom="15dp"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="Username"
-            android:transitionName="username_tran"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A"
-            app:startIconDrawable="@drawable/ic_baseline_android_24"
-            app:startIconTint="#17202A">
+            android:layout_marginTop="15dp"
+            android:textSize="25sp"
+            android:hint="Email"
+            android:transitionName="email_tran"
+            android:fontFamily="sans-serif" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
+            android:textSize="25sp"
             android:hint="Password"
             android:transitionName="password_tran"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A"
-            app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
-            app:startIconTint="#17202A">
+            android:fontFamily="sans-serif"
+            android:inputType="textPassword" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="43dp" />
+
     <Button
+        android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -120,7 +109,7 @@
         android:textStyle="italic" />
 
     <ImageButton
-        android:id="@+id/playButton"
+        android:id="@+id/LoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -132,7 +121,7 @@
         app:srcCompat="@drawable/ic_login" />
 
     <Button
-        android:id="@+id/signup_screen"
+        android:id="@+id/signup_click"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

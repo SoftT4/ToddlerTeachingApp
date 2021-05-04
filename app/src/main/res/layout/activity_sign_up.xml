@@ -53,105 +53,74 @@
         android:orientation="vertical"
         android:transitionName="signup_tran">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Full Name"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A">
+            app:hintTextColor="#17202A"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:inputType="text" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A"
-            app:counterEnabled="true"
-            app:counterMaxLength="15">
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:inputType="text" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            app:passwordToggleEnabled="true"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:inputType="textPassword" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <EditText
             android:id="@+id/email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A">
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:inputType="textEmailAddress" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone Number"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A">
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:inputType="phone" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/age"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Age"
-            app:boxStrokeColor="#17202A"
-            app:boxStrokeWidthFocused="3dp"
-            app:hintTextColor="#17202A">
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:inputType="number" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
             android:layout_marginTop="5dp"

@@ -1,14 +1,14 @@
 package com.example.team4;
 
 public class User {
-    String name, username, email, phone, password, boy, girl;
-    int age;
+    String name, username, email, phone, password, boy, girl, age;
+
 
     public User() {
 
     }
 
-    public User(String name, String username, String email, String phone, String password, String boy, String girl, int age) {
+    public User(String name, String username, String email, String phone, String password, String boy, String girl, String age) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -75,11 +75,11 @@ public class User {
         this.girl = girl;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 }
