@@ -5,14 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,14 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class EditProfile extends AppCompatActivity {
+import java.util.HashMap;
 
-    TextInputLayout fullName, email, phoneNo, password;
-    TextView fullNameLabel, usernameLabel;
+public class EditProfile extends AppCompatActivity implements View.OnClickListener{
+
     ImageView profileimg;
-
-    //Global Variables to hold user data inside this activity
-    String _USERNAME, _NAME, _EMAIL, _PHONENO, _PASSWORD;
+    Button update,cancel;
+    private EditText Fullname, Email, Phone, Password, Age;
+    String fullname,email,phone,password,age;
 
     private FirebaseUser showuser;
     private DatabaseReference reference;
@@ -40,19 +42,20 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        reference = FirebaseDatabase.getInstance().getReference("users");
-
-        //Hooks
-        fullName = findViewById(R.id.full_name_profile);
-        email = findViewById(R.id.email_profile);
-        phoneNo = findViewById(R.id.phone_no_profile);
-        password = findViewById(R.id.password_profile);
-        fullNameLabel = findViewById(R.id.fullname_field);
-        usernameLabel = findViewById(R.id.username_field);
         profileimg = findViewById(R.id.profile_image);
+        update = findViewById(R.id.update_btn);
+        cancel = findViewById(R.id.back_btn);
+
+        update.setOnClickListener(this);
+        cancel.setOnClickListener(this);
 
         final TextView fullNameLabel = findViewById(R.id.fullname_field);
         final TextView usernameLabel = findViewById(R.id.username_field);
+        Fullname = findViewById(R.id.full_name_profile);
+        Email = findViewById(R.id.email_profile);
+        Phone = findViewById(R.id.phone_no_profile);
+        Password = findViewById(R.id.password_profile);
+        Age = findViewById(R.id.age_profile);
 
         showuser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("users");
@@ -68,10 +71,20 @@ public class EditProfile extends AppCompatActivity {
                 if (userProfile != null)
                 {
                     String username = userProfile.username;
+                    String fullnameView = userProfile.name;
                     String fullname = userProfile.name;
+                    String email = userProfile.email;
+                    String phone = userProfile.phone;
+                    String password = userProfile.password;
+                    String age = userProfile.age;
 
                     fullNameLabel.setText(username);
-                    usernameLabel.setText(fullname);
+                    usernameLabel.setText(fullnameView);
+                    Fullname.setText(fullname);
+                    Email.setText(email);
+                    Phone.setText(phone);
+                    Password.setText(password);
+                    Age.setText(age);
                 }
             }
 
@@ -81,61 +94,101 @@ public class EditProfile extends AppCompatActivity {
 
             }
         });
-
-
-        //ShowAllData
-        showAllUserData();
-
     }
 
-    private void showAllUserData() {
-
-        Intent intent = getIntent();
-        _USERNAME = intent.getStringExtra("username");
-        _NAME = intent.getStringExtra("name");
-        _EMAIL = intent.getStringExtra("email");
-        _PHONENO = intent.getStringExtra("phone");
-        _PASSWORD = intent.getStringExtra("password");
-
-
-        fullNameLabel.setText(_NAME);
-        usernameLabel.setText(_USERNAME);
-        fullName.getEditText().setText(_NAME);
-        email.getEditText().setText(_EMAIL);
-        phoneNo.getEditText().setText(_PHONENO);
-        password.getEditText().setText(_PASSWORD);
-    }
-
-
-    public void update(View view) {
-
-        if (isNameChanged() || isPasswordChanged()) {
-            Toast.makeText(this, "Data has been updated", Toast.LENGTH_LONG).show();
-        }
-        else Toast.makeText(this, "Data can not be updated", Toast.LENGTH_LONG).show();
-
-    }
-
-    private boolean isPasswordChanged() {
-        if (!_PASSWORD.equals(password.getEditText().getText().toString())) {
-            reference.child(_USERNAME).child("password").setValue(password.getEditText().getText().toString());
-            _PASSWORD = password.getEditText().getText().toString();
-            return true;
-        } else {
-            return false;
+    @Override
+    public void onClick(View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.update_btn:
+                updateProfile();
+                break;
+            case R.id.back_btn:
+                startActivity(new Intent(this,Profile.class));
+                break;
         }
     }
 
-    private boolean isNameChanged() {
+    private void updateProfile()
+    {
+        fullname = Fullname.getText().toString().trim();
+        email = Email.getText().toString().trim();
+        phone = Phone.getText().toString().trim();
+        password = Password.getText().toString().trim();
+        age = Age.getText().toString().trim();
 
-        if (!_NAME.equals(fullName.getEditText().getText().toString())) {
-            reference.child(_USERNAME).child("name").setValue(fullName.getEditText().getText().toString());
-            _NAME = fullName.getEditText().getText().toString();
-            return true;
-        } else {
-            return false;
+        if(fullname.isEmpty())
+        {
+            Fullname.setError("Full name is required");
+            Fullname.requestFocus();
+            return;
+        }
+        if(password.isEmpty())
+        {
+            Password.setError("Password is required");
+            Password.requestFocus();
+            return;
+        }
+        if(password.length() < 8)
+        {
+            Password.setError("At least 8 characters");
+            Password.requestFocus();
+            return;
+        }
+        if(email.isEmpty())
+        {
+            Email.setError("Email is required");
+            Email.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            Email.setError("Invalid email");
+            Email.requestFocus();
+            return;
+        }
+        if(phone.isEmpty())
+        {
+            Phone.setError("Phone number is required");
+            Phone.requestFocus();
+            return;
+        }
+        if(phone.length() < 10)
+        {
+            Phone.setError("Invalid phone number");
+            Phone.requestFocus();
+            return;
+        }
+        if(age.isEmpty())
+        {
+            Age.setError("Age is required");
+            Age.requestFocus();
+            return;
+        }
+        if(age.equals("0"))
+        {
+            Age.setError("Invalid age");
+            Age.requestFocus();
+            return;
         }
 
+        HashMap hashMap = new HashMap();
+        hashMap.put("name",fullname);
+        hashMap.put("email",email);
+        hashMap.put("phone",phone);
+        hashMap.put("password",password);
+        hashMap.put("age",age);
+
+        reference.child(userID).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+
+            }
+        });
     }
+
+
 
 }

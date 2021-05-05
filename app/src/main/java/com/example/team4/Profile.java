@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,6 +74,12 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        start.setOnClickListener(view -> {
+
+            Intent intent = new Intent(Profile.this, Start.class);
+            startActivity(intent);
+        });
+
         edit_profile.setOnClickListener(view -> {
 
             Intent intent = new Intent(Profile.this, EditProfile.class);
@@ -80,7 +87,7 @@ public class Profile extends AppCompatActivity {
         });
 
         LogOut.setOnClickListener(view -> {
-
+            FirebaseAuth.getInstance().signOut();
             Intent intent2 = new Intent(Profile.this, Login.class);
             startActivity(intent2);
         });

@@ -69,10 +69,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="25sp"
+            android:drawableLeft="@drawable/ic_baseline_android_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="#17202A"
+            android:textColor="#17202A"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif"
             android:hint="Email"
-            android:transitionName="email_tran"
-            android:fontFamily="sans-serif" />
+            android:transitionName="email_tran" />
 
 
         <EditText
@@ -80,11 +84,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="25sp"
-            android:hint="Password"
-            android:transitionName="password_tran"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:drawableTint="#17202A"
             android:fontFamily="sans-serif"
-            android:inputType="textPassword" />
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="#17202A"
+            android:textSize="20sp"
+            android:transitionName="password_tran" />
 
 
     </LinearLayout>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="update"
     tools:context=".EditProfile">
 
     <LinearLayout
@@ -32,12 +31,16 @@
                 android:id="@+id/fullname_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/profile_image"
-                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="90dp"
+                android:fontFamily="@font/beachday"
                 android:includeFontPadding="false"
-                android:textColor="#000"
+                android:shadowColor="#212F3C"
+                android:shadowDx="7"
+                android:shadowDy="7"
+                android:shadowRadius="3"
+                android:textColor="@color/white"
                 android:textSize="36sp" />
 
             <TextView
@@ -45,9 +48,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fullname_field"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/profile_image"
+                android:fontFamily="@font/beachday"
                 android:includeFontPadding="false"
+                android:shadowColor="#212F3C"
+                android:shadowDx="7"
+                android:shadowDy="7"
+                android:shadowRadius="3"
+                android:textColor="@color/white"
                 android:textSize="30sp" />
 
         </RelativeLayout>
@@ -57,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-100dp"
-            android:padding="20dp"/>
+            android:padding="20dp" />
 
         <!--Third Section-->
         <LinearLayout
@@ -68,78 +78,107 @@
             android:padding="20dp">
 
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
                 android:id="@+id/full_name_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Full Name">
+                android:layout_marginBottom="8dp"
+                android:hint="Full Name"
+                android:drawableLeft="@drawable/username_small_icon"
+                android:drawablePadding="10dp"
+                android:drawableTint="#2BBBC6"
+                android:textColor="#17202A"
+                android:fontFamily="sans-serif-light"
+                android:textSize="20sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/username_small_icon"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="24sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
                 android:id="@+id/email_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-Mail">
+                android:layout_marginBottom="8dp"
+                android:hint="E-Mail"
+                android:drawableLeft="@android:drawable/sym_action_email"
+                android:drawablePadding="10dp"
+                android:drawableTint="#7CC9A6"
+                android:textColor="#17202A"
+                android:fontFamily="sans-serif-light"
+                android:textSize="20sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@android:drawable/sym_action_email"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="24sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
                 android:id="@+id/phone_no_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number">
+                android:layout_marginBottom="8dp"
+                android:hint="Phone Number"
+                android:drawableLeft="@drawable/phone_small_icon"
+                android:drawablePadding="10dp"
+                android:drawableTint="#F5AC11"
+                android:textColor="#17202A"
+                android:fontFamily="sans-serif-light"
+                android:textSize="20sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/phone_small_icon"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="24sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
                 android:id="@+id/password_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password">
+                android:layout_marginBottom="8dp"
+                android:hint="Password"
+                android:drawableLeft="@drawable/password_icon_small"
+                android:drawablePadding="10dp"
+                android:drawableTint="#FC6717"
+                android:textColor="#17202A"
+                android:fontFamily="sans-serif-light"
+                android:textSize="20sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/password_icon_small"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="24sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
+            <EditText
+                android:id="@+id/age_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="8dp"
+                android:drawableLeft="@android:drawable/star_off"
+                android:drawablePadding="10dp"
+                android:drawableTint="#F2CC71"
+                android:fontFamily="sans-serif-light"
+                android:hint="Age"
+                android:textColor="#17202A"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/update_btn"
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="25dp"
                 android:background="@drawable/background_btn"
                 android:fontFamily="@font/beachday"
-                android:onClick="update"
+                android:padding="13dp"
+                android:shadowColor="#212F3C"
+                android:shadowDx="7"
+                android:shadowDy="7"
+                android:shadowRadius="3"
                 android:text="UPDATE"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_btn"
+                android:fontFamily="@font/beachday"
+                android:padding="13dp"
+                android:shadowColor="#212F3C"
+                android:shadowDx="7"
+                android:shadowDy="7"
+                android:shadowRadius="3"
+                android:text="Cancel"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
 

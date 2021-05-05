@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Team4">
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".AbcLevel"></activity>
+        <activity android:name=".abcLevel" />
+        <activity android:name=".NumberLevel" />
+        <activity android:name=".Start" />
+        <activity android:name=".EditProfile" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Profile" />
         <activity android:name=".SignUp" />
