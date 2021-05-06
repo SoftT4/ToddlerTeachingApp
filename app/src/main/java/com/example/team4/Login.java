@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,9 +19,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "Login";
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +111,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
+        
         progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -118,6 +124,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     if(user.isEmailVerified())
                     {
                         startActivity(new Intent(Login.this,Profile.class));
+                        finish();
                     }
                     else
                     {
@@ -128,6 +135,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 }
                 else{
                     Toast.makeText(Login.this,"Authentication failed.",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(Login.this,MainActivity.class));
                 }
             }
         });
