@@ -80,10 +80,11 @@ public class Profile extends AppCompatActivity {
         });
 
         LogOut.setOnClickListener(view -> {
-
+            FirebaseAuth.getInstance().signOut();
             Intent intent2 = new Intent(Profile.this, Login.class);
             startActivity(intent2);
         });
+
     }
 
 }
