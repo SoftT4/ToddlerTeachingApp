@@ -30,7 +30,11 @@ public class NumberLevel extends AppCompatActivity {
             Intent intent = new Intent(NumberLevel.this, Start.class);
             startActivity(intent);
         });
+        easy.setOnClickListener(view->{
+            Intent easyI = new Intent(this,learn_123.class);
+            startActivity(easyI);
 
+        });
 
 
     }

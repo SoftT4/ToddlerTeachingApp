@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Team4">
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".learn_123"></activity>
+        <activity android:name=".learn_alphabet" />
+        <activity android:name=".EditProfile" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Profile" />
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
+        <activity android:name=".Start" />
+        <activity android:name=".AbcLevel" />
+        <activity android:name=".NumberLevel" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -30,5 +30,9 @@ public class AbcLevel extends AppCompatActivity {
             Intent intent = new Intent(AbcLevel.this, Start.class);
             startActivity(intent);
         });
+        easy.setOnClickListener(view->{
+            Intent learn = new Intent(this, learn_alphabet.class);
+            startActivity(learn);
+        });
     }
 }
